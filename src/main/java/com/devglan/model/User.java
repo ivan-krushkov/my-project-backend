@@ -2,21 +2,22 @@ package com.devglan.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable {
     
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Column
     private String firstName;
     @Column
     private String lastName;
-    @Id
-    @Column
+    @Column(unique=true)
     private String username;
     @Column
     @JsonIgnore
@@ -26,11 +27,11 @@ public class User {
     @Column
     private int age;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

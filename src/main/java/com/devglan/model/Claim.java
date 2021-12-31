@@ -1,11 +1,12 @@
 package com.devglan.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "claim")
-public class Claim {
+public class Claim implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
