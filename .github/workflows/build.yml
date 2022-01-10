@@ -10,9 +10,22 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
+  #Check style(lint)
+  checkstyle:
+    name: Checkstyle
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dbelyaev/action-checkstyle@master
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          level: warning
+
   #Test's job
   tests:
     name: Unit tests
+    needs: checkstyle
     #Run on Ubuntu using the latest version
     runs-on: ubuntu-latest
     #Job's steps

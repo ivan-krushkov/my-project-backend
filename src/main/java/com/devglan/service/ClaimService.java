@@ -1,18 +1,22 @@
 package com.devglan.service;
 
-import java.util.List;
-
 import com.devglan.model.Claim;
 import com.devglan.model.ClaimDto;
 
+import java.util.List;
+
+
 public interface ClaimService {
 
-    Claim save(ClaimDto claim);
-    List<Claim> findAll();
-    void delete(int id);
+  Claim save(ClaimDto claim);
+ 
+  List<Claim> findAll();
 
-    Claim findById(int id);
+  void delete(int id);
 
-    ClaimDto update(ClaimDto claimdto);
-	Claim findOne(int billNumber);
+  Claim findById(int id);
+
+  ClaimDto update(ClaimDto claimdto);
+  
+  Claim findOne(int billNumber);
 }
