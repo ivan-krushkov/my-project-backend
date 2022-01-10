@@ -17,3 +17,5 @@ data:
     eureka.client.fetch-registry=false
     logging.level.com.netflix.eureka=OFF
     logging.level.com.netflix.discovery=OFF
+    management.endpoint.health.show-details=always
+    management.endpoint.health.probes.enabled=true

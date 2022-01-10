@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name:  my-project-backend
-          image: ikrushkov/my-project-backend:8
+          image: ikrushkov/my-project-backend:16
           imagePullPolicy: Always
           env:
             - name: MYSQL_DATABASE
@@ -47,6 +47,12 @@ spec:
             limits:
               memory: "600Mi"
               cpu: "400m"
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+            initialDelaySeconds: 120
+            periodSeconds: 5
       volumes:
       - name: config-volume
         configMap:
