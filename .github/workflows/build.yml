@@ -93,10 +93,23 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ivan-krushkov_my-project-backend
 
-  #Build's job
-  build:
+  security:
     #Depends on sonar's job
     needs: sonar
+    name: Snyk analysis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/maven@master
+        #continue-on-error: true # Now no time to fix all
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+  #Build's job
+  build:
+    #Depends on security's job
+    needs: security
     name: Build
     #Run on Ubuntu using the latest version
     runs-on: ubuntu-latest
