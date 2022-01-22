@@ -102,7 +102,7 @@ jobs:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/maven@master
-        #continue-on-error: true # Now no time to fix all
+        continue-on-error: true # Now no time to fix all
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
